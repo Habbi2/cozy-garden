@@ -587,6 +587,7 @@ export class Garden {
     let startY = 0;
     let grabOffsetX = 0;
     let grabOffsetY = 0;
+    let dragGhost: HTMLElement | null = null;
     
     const onStart = (clientX: number, clientY: number) => {
       startX = clientX;
@@ -606,27 +607,43 @@ export class Garden {
       if (!isDragging && (dx > INTERACTION.DRAG_THRESHOLD || dy > INTERACTION.DRAG_THRESHOLD)) {
         isDragging = true;
         this.draggedPlant = plant;
-        el.classList.add('dragging');
+        
+        // Create a ghost element for dragging
+        dragGhost = el.cloneNode(true) as HTMLElement;
+        dragGhost.style.cssText = `
+          position: fixed;
+          pointer-events: none;
+          z-index: 10000;
+          opacity: 0.9;
+          transition: none;
+          transform: none;
+          left: ${clientX - grabOffsetX}px;
+          top: ${clientY - grabOffsetY}px;
+        `;
+        document.body.appendChild(dragGhost);
+        
+        // Hide original and show highlights
+        el.style.opacity = '0.3';
         this.highlightMergeTargets(plant);
-        this.hideTooltip();  // Hide tooltip when dragging starts
+        this.hideTooltip();
       }
       
-      if (isDragging) {
-        // Keep the element where we grabbed it relative to cursor
-        el.style.position = 'fixed';
-        el.style.left = `${clientX - grabOffsetX}px`;
-        el.style.top = `${clientY - grabOffsetY}px`;
-        el.style.zIndex = '1000';
+      if (isDragging && dragGhost) {
+        dragGhost.style.left = `${clientX - grabOffsetX}px`;
+        dragGhost.style.top = `${clientY - grabOffsetY}px`;
       }
     };
     
     const onEnd = (clientX: number, clientY: number) => {
       if (isDragging) {
-        el.classList.remove('dragging');
-        el.style.position = '';
-        el.style.left = '';
-        el.style.top = '';
-        el.style.zIndex = '';
+        // Remove ghost
+        if (dragGhost) {
+          dragGhost.remove();
+          dragGhost = null;
+        }
+        
+        // Restore original
+        el.style.opacity = '';
         
         this.clearMergeHighlights();
         
@@ -657,23 +674,33 @@ export class Garden {
       document.addEventListener('mouseup', onMouseUp);
     });
     
-    // Touch events
+    // Touch events - use touch-action CSS instead of preventDefault for better compatibility
+    let touchStarted = false;
+    
     el.addEventListener('touchstart', (e) => {
+      touchStarted = true;
       const touch = e.touches[0];
       onStart(touch.clientX, touch.clientY);
-    }, { passive: false });
+    }, { passive: true });
     
     el.addEventListener('touchmove', (e) => {
-      if (isDragging) {
-        e.preventDefault();
-      }
+      if (!touchStarted) return;
       const touch = e.touches[0];
       onMove(touch.clientX, touch.clientY);
-    }, { passive: false });
+    }, { passive: true });
     
     el.addEventListener('touchend', (e) => {
+      if (!touchStarted) return;
+      touchStarted = false;
       const touch = e.changedTouches[0];
       onEnd(touch.clientX, touch.clientY);
+    });
+    
+    el.addEventListener('touchcancel', () => {
+      touchStarted = false;
+      if (isDragging) {
+        onEnd(startX, startY);
+      }
     });
   }
   
