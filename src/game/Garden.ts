@@ -661,14 +661,14 @@ export class Garden {
     el.addEventListener('touchstart', (e) => {
       const touch = e.touches[0];
       onStart(touch.clientX, touch.clientY);
-    }, { passive: true });
+    }, { passive: false });
     
     el.addEventListener('touchmove', (e) => {
-      const touch = e.touches[0];
-      onMove(touch.clientX, touch.clientY);
-      if (isDragging && e.cancelable) {
+      if (isDragging) {
         e.preventDefault();
       }
+      const touch = e.touches[0];
+      onMove(touch.clientX, touch.clientY);
     }, { passive: false });
     
     el.addEventListener('touchend', (e) => {
