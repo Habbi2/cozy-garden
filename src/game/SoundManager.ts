@@ -5,11 +5,16 @@ type SoundType = 'plant' | 'water' | 'grow' | 'merge' | 'unlock' | 'click' | 'lo
 export class SoundManager {
   private audioContext: AudioContext | null = null;
   private enabled = true;
+  private hasUserInteracted = false;
   
   constructor() {
     // Initialize audio context on first user interaction
-    document.addEventListener('click', () => this.initAudio(), { once: true });
-    document.addEventListener('touchstart', () => this.initAudio(), { once: true });
+    const onInteract = () => {
+      this.hasUserInteracted = true;
+      this.initAudio();
+    };
+    document.addEventListener('click', onInteract, { once: true });
+    document.addEventListener('touchstart', onInteract, { once: true });
   }
   
   private initAudio(): void {
@@ -76,7 +81,7 @@ export class SoundManager {
   }
   
   private vibrate(type: SoundType): void {
-    if (!navigator.vibrate) return;
+    if (!navigator.vibrate || !this.hasUserInteracted) return;
     
     switch (type) {
       case 'plant':
