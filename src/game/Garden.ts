@@ -666,7 +666,7 @@ export class Garden {
     el.addEventListener('touchmove', (e) => {
       const touch = e.touches[0];
       onMove(touch.clientX, touch.clientY);
-      if (isDragging) {
+      if (isDragging && e.cancelable) {
         e.preventDefault();
       }
     }, { passive: false });

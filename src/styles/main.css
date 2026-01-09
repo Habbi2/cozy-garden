@@ -277,9 +277,11 @@ body::before {
 .plant.dragging {
   cursor: grabbing;
   transform: scale(1.3) rotate(-5deg);
+  transform-origin: top left;
   z-index: 100;
   filter: drop-shadow(6px 10px 15px rgba(0, 0, 0, 0.5));
   animation: none !important;
+  pointer-events: none;
 }
 
 .plant.merge-target {
