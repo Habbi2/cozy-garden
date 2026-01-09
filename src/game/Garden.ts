@@ -587,14 +587,18 @@ export class Garden {
     let startY = 0;
     let offsetX = 0;
     let offsetY = 0;
+    let elWidth = 0;
+    let elHeight = 0;
     
     const onStart = (clientX: number, clientY: number) => {
       startX = clientX;
       startY = clientY;
       this.dragStartPos = { x: clientX, y: clientY };
       
-      // Calculate offset from click position to element center
+      // Calculate offset from click position to element center and store size
       const rect = el.getBoundingClientRect();
+      elWidth = rect.width;
+      elHeight = rect.height;
       offsetX = clientX - (rect.left + rect.width / 2);
       offsetY = clientY - (rect.top + rect.height / 2);
     };
@@ -613,10 +617,9 @@ export class Garden {
       
       if (isDragging) {
         // Position plant centered under cursor, accounting for initial click offset
-        const rect = el.getBoundingClientRect();
         el.style.position = 'fixed';
-        el.style.left = `${clientX - offsetX - rect.width / 2}px`;
-        el.style.top = `${clientY - offsetY - rect.height / 2}px`;
+        el.style.left = `${clientX - offsetX - elWidth / 2}px`;
+        el.style.top = `${clientY - offsetY - elHeight / 2}px`;
         el.style.zIndex = '1000';
       }
     };
