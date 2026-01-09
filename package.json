@@ -1,0 +1,23 @@
+{
+  "name": "cozy-garden",
+  "version": "1.0.0",
+  "description": "A cozy garden game - plant, water, grow, relax 🌻",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2",
+    "vite": "^6.0.7"
+  },
+  "keywords": [
+    "game",
+    "garden",
+    "casual",
+    "cozy"
+  ],
+  "author": "",
+  "license": "MIT"
+}
