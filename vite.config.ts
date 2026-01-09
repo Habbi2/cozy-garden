@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  base: '/casual-game/',
+  base: '/cozy-garden/',
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
