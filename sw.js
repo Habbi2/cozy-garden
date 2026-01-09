@@ -1,8 +1,8 @@
-const CACHE_NAME = 'merge-garden-v1';
+const CACHE_NAME = 'cozy-garden-v2';
 const ASSETS_TO_CACHE = [
-  '/',
-  '/index.html',
-  '/manifest.json'
+  './',
+  './index.html',
+  './manifest.json'
 ];
 
 // Install event - cache assets
