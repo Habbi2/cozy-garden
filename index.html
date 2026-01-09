@@ -20,8 +20,8 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌻</text></svg>">
   <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌻</text></svg>">
   <link rel="manifest" href="/cozy-garden/assets/manifest-enb6iwxn.json">
-  <script type="module" crossorigin src="/cozy-garden/assets/index-CXKfdJ-D.js"></script>
-  <link rel="stylesheet" crossorigin href="/cozy-garden/assets/index-D4doG2Cj.css">
+  <script type="module" crossorigin src="/cozy-garden/assets/index-CtiwB9n7.js"></script>
+  <link rel="stylesheet" crossorigin href="/cozy-garden/assets/index-BUIAnc_1.css">
 </head>
 <body>
   <div id="game">
@@ -135,52 +135,257 @@
     <!-- Wiki/Help Modal -->
     <div id="wiki-modal" class="modal hidden">
       <div class="modal-content wiki-content">
-        <h2>❓ How to Play</h2>
+        <h2>📚 Garden Wiki</h2>
         
-        <div class="wiki-section">
-          <h3>🌱 Basics</h3>
-          <p><strong>Plant:</strong> Tap an empty tile to plant a seed</p>
-          <p><strong>Water:</strong> Tap a plant to water it (costs 💧)</p>
-          <p><strong>Grow:</strong> Watered plants grow over time</p>
-          <p><strong>Harvest:</strong> Tap fully grown plants to harvest for 🌟 points</p>
+        <!-- Wiki Navigation Tabs -->
+        <div class="wiki-tabs">
+          <button class="wiki-tab active" data-tab="basics">🌱 Basics</button>
+          <button class="wiki-tab" data-tab="seeds">🌻 Seeds</button>
+          <button class="wiki-tab" data-tab="visitors">🦋 Visitors</button>
+          <button class="wiki-tab" data-tab="seasons">🌦️ Seasons</button>
+          <button class="wiki-tab" data-tab="strategies">💡 Tips</button>
+          <button class="wiki-tab" data-tab="advanced">⭐ Advanced</button>
         </div>
         
-        <div class="wiki-section">
-          <h3>🎮 Controls</h3>
-          <p><strong>Tap:</strong> Plant seed or water plant</p>
-          <p><strong>Long press:</strong> Move/rearrange plants</p>
-          <p><strong>Double tap:</strong> Quick harvest (when ready)</p>
+        <!-- Tab Contents -->
+        <div class="wiki-tab-content" id="wiki-tab-basics">
+          <div class="wiki-section">
+            <h3>🎮 Controls</h3>
+            <p><strong>Tap empty tile:</strong> Plant selected seed</p>
+            <p><strong>Tap plant:</strong> Water it (costs 💧)</p>
+            <p><strong>Tap mature plant:</strong> Harvest for 🌟 points</p>
+            <p><strong>Long press:</strong> Drag to move plants</p>
+          </div>
+          
+          <div class="wiki-section">
+            <h3>📊 Resources</h3>
+            <p><strong>💧 Water:</strong> Regenerates 1 every 30 seconds (max 4)</p>
+            <p><strong>🌟 Points:</strong> Spend in shop to unlock seeds</p>
+            <p><strong>📖 Codex:</strong> Track your discovered evolutions</p>
+            <p><strong>🏛️ Hall of Fame:</strong> Retire maxed plants for glory</p>
+          </div>
+          
+          <div class="wiki-section">
+            <h3>🌱 Growth Cycle</h3>
+            <p>1. <strong>Plant</strong> a seed on an empty tile</p>
+            <p>2. <strong>Water</strong> it to start growth</p>
+            <p>3. Wait for it to <strong>evolve</strong> through tiers</p>
+            <p>4. <strong>Harvest</strong> when fully grown (sparkles ✨)</p>
+            <p>5. Plants need <strong>re-watering</strong> periodically!</p>
+          </div>
         </div>
         
-        <div class="wiki-section">
-          <h3>📊 Resources</h3>
-          <p><strong>💧 Water:</strong> Regenerates over time (1 every 30s)</p>
-          <p><strong>🌟 Points:</strong> Earned by harvesting plants</p>
-          <p><strong>📖 Codex:</strong> Track discovered evolutions</p>
+        <div class="wiki-tab-content hidden" id="wiki-tab-seeds">
+          <div class="wiki-section">
+            <h3>🌱 Sprout (Free)</h3>
+            <p><strong>Evolution Path:</strong> 🌱→🌿→🌼→🌷→🌸→💐</p>
+            <p><strong>Special:</strong> 🌻 Sunflower (4+ neighbors), 🍃 Herbs (combo water)</p>
+            <p><strong>Best for:</strong> Beginners, consistent growth</p>
+          </div>
+          
+          <div class="wiki-section">
+            <h3>🌰 Acorn (20⭐)</h3>
+            <p><strong>Evolution Path:</strong> 🌰→🌲→🎄→🌳→🏔️</p>
+            <p><strong>Special:</strong> 🍎 Fruit trees, 🎋 Bamboo (night growth)</p>
+            <p><strong>Best for:</strong> Patient growers, high-value harvests</p>
+          </div>
+          
+          <div class="wiki-section">
+            <h3>🫘 Bean (40⭐)</h3>
+            <p><strong>Evolution Path:</strong> 🫘→🌾→🌽→🥕→🥬</p>
+            <p><strong>Special:</strong> 🍅 Tomato, 🫑 Peppers (fast water)</p>
+            <p><strong>Best for:</strong> Active players, quick cycles</p>
+          </div>
+          
+          <div class="wiki-section">
+            <h3>🧅 Bulb (60⭐)</h3>
+            <p><strong>Evolution Path:</strong> 🧅→🌺→🪻→🌹→💮</p>
+            <p><strong>Special:</strong> 🌸 Cherry blossom, 🪷 Lotus (water neighbors)</p>
+            <p><strong>Best for:</strong> Rare evolutions, beauty</p>
+          </div>
+          
+          <div class="wiki-section">
+            <h3>🍄 Spore (80⭐)</h3>
+            <p><strong>Evolution Path:</strong> 🍄→🪴→🌵→🪨→💎</p>
+            <p><strong>Special:</strong> Night-loving, mysterious evolutions</p>
+            <p><strong>Best for:</strong> Night owls, unique discoveries</p>
+          </div>
+          
+          <div class="wiki-section">
+            <h3>🌵 Cactus (100⭐)</h3>
+            <p><strong>Evolution Path:</strong> 🌵→🏜️→🌴→🥥→🏝️</p>
+            <p><strong>Special:</strong> Needs less water, desert resilience</p>
+            <p><strong>Best for:</strong> Low maintenance, unique looks</p>
+          </div>
         </div>
         
-        <div class="wiki-section">
-          <h3>🌸 Evolution Tips</h3>
-          <p>• Different seeds have unique evolution paths</p>
-          <p>• Keep plants watered for faster growth</p>
-          <p>• Discover all evolutions to complete the codex!</p>
-          <p>• Night time growth is slower but special</p>
+        <div class="wiki-tab-content hidden" id="wiki-tab-visitors">
+          <div class="wiki-section">
+            <h3>🦋 Butterfly</h3>
+            <p><strong>Effect:</strong> Pollinates nearby plants</p>
+            <p><strong>Benefit:</strong> +20% growth to adjacent plants</p>
+            <p><strong>Appears:</strong> Spring & Summer</p>
+          </div>
+          
+          <div class="wiki-section">
+            <h3>🐝 Busy Bee</h3>
+            <p><strong>Effect:</strong> Bonus water regeneration</p>
+            <p><strong>Benefit:</strong> +1 water immediately</p>
+            <p><strong>Appears:</strong> Spring, attracted to flowers</p>
+          </div>
+          
+          <div class="wiki-section">
+            <h3>🐰 Lucky Rabbit</h3>
+            <p><strong>Effect:</strong> Instant grow</p>
+            <p><strong>Benefit:</strong> 1 random plant instantly evolves!</p>
+            <p><strong>Appears:</strong> Rare, all seasons</p>
+          </div>
+          
+          <div class="wiki-section">
+            <h3>🐦 Bluebird</h3>
+            <p><strong>Effect:</strong> Double harvest</p>
+            <p><strong>Benefit:</strong> Next harvest worth 2x points</p>
+            <p><strong>Appears:</strong> Morning & Autumn</p>
+          </div>
+          
+          <div class="wiki-section">
+            <h3>🐞 Ladybug</h3>
+            <p><strong>Effect:</strong> Pollinates plants</p>
+            <p><strong>Benefit:</strong> +15% growth boost</p>
+            <p><strong>Appears:</strong> Summer, sunny weather</p>
+          </div>
+          
+          <div class="wiki-section">
+            <h3>🧑‍🌾 Farmer (You!)</h3>
+            <p><strong>Effect:</strong> Your farming avatar</p>
+            <p><strong>Benefit:</strong> Shows activity, gives hints</p>
+            <p><strong>Tip:</strong> Watch farmer speech for tips!</p>
+          </div>
         </div>
         
-        <div class="wiki-section">
-          <h3>🌦️ Seasons</h3>
-          <p><strong>🌸 Spring:</strong> Balanced growth, pollinators visit</p>
-          <p><strong>☀️ Summer:</strong> Faster growth, needs more water</p>
-          <p><strong>🍂 Autumn:</strong> Bonus harvest points!</p>
-          <p><strong>❄️ Winter:</strong> Slower growth, less watering needed</p>
+        <div class="wiki-tab-content hidden" id="wiki-tab-seasons">
+          <div class="wiki-section">
+            <h3>🌸 Spring (30 min)</h3>
+            <p><strong>Growth:</strong> ×1.1 (10% bonus)</p>
+            <p><strong>Water decay:</strong> Normal</p>
+            <p><strong>Harvest bonus:</strong> +10%</p>
+            <p><strong>Visitors:</strong> 🐝 Bees, 🦋 Butterflies, 🐦 Birds</p>
+            <p><strong>Tip:</strong> Great time to plant new seeds!</p>
+          </div>
+          
+          <div class="wiki-section">
+            <h3>☀️ Summer (30 min)</h3>
+            <p><strong>Growth:</strong> ×1.2 (20% bonus)</p>
+            <p><strong>Water decay:</strong> Faster (plants thirstier)</p>
+            <p><strong>Harvest bonus:</strong> +20%</p>
+            <p><strong>Visitors:</strong> 🦋 Butterflies, 🐞 Ladybugs, 🌻 Sunflowers</p>
+            <p><strong>Tip:</strong> Keep plants well-watered!</p>
+          </div>
+          
+          <div class="wiki-section">
+            <h3>🍂 Autumn (30 min)</h3>
+            <p><strong>Growth:</strong> ×0.9 (10% slower)</p>
+            <p><strong>Water decay:</strong> Slow</p>
+            <p><strong>Harvest bonus:</strong> +50% 🎉</p>
+            <p><strong>Visitors:</strong> 🐦 Birds, 🍃 Leaves</p>
+            <p><strong>Tip:</strong> Best time to harvest!</p>
+          </div>
+          
+          <div class="wiki-section">
+            <h3>❄️ Winter (30 min)</h3>
+            <p><strong>Growth:</strong> ×0.6 (40% slower)</p>
+            <p><strong>Water decay:</strong> Very slow</p>
+            <p><strong>Harvest bonus:</strong> Normal</p>
+            <p><strong>Visitors:</strong> 🐦 Birds, ⛄ Snowman</p>
+            <p><strong>Tip:</strong> Focus on planning, less watering needed</p>
+          </div>
+          
+          <div class="wiki-section">
+            <h3>🌧️ Weather Events</h3>
+            <p><strong>Rain:</strong> Auto-waters plants! (30% chance each)</p>
+            <p><strong>Sunny:</strong> Extra growth boost</p>
+            <p><strong>Snow:</strong> Winter visual, slows growth</p>
+            <p><strong>Windy:</strong> Particles blow faster</p>
+          </div>
         </div>
         
-        <div class="wiki-section">
-          <h3>🛒 Shop</h3>
-          <p>Spend points to unlock new seed types with unique evolutions!</p>
+        <div class="wiki-tab-content hidden" id="wiki-tab-strategies">
+          <div class="wiki-section">
+            <h3>💧 Efficient Watering</h3>
+            <p>• Water plants that are close to evolving first</p>
+            <p>• In Summer, prioritize thirsty plants</p>
+            <p>• Wait for rain in Spring to save water</p>
+            <p>• Combo watering (rapid taps) triggers special evolutions!</p>
+          </div>
+          
+          <div class="wiki-section">
+            <h3>📈 Maximizing Points</h3>
+            <p>• Harvest in Autumn for +50% bonus!</p>
+            <p>• Let 🐦 Bluebird visit before big harvests</p>
+            <p>• Higher tier plants = more points</p>
+            <p>• Golden plants give 2× points</p>
+          </div>
+          
+          <div class="wiki-section">
+            <h3>🌟 Discovering Evolutions</h3>
+            <p>• Place 4+ plants around one for Sunflower 🌻</p>
+            <p>• Night time unlocks special evolutions 🌙</p>
+            <p>• Try different watering patterns</p>
+            <p>• Check hints in the Codex!</p>
+          </div>
+          
+          <div class="wiki-section">
+            <h3>🎯 Garden Layout</h3>
+            <p>• Group same seed types for visitor bonuses</p>
+            <p>• Leave center open for visitors to land</p>
+            <p>• Place slow growers in corners</p>
+            <p>• Mix seed types for visual variety</p>
+          </div>
         </div>
         
-        <button id="wiki-close" class="btn-secondary">Got it!</button>
+        <div class="wiki-tab-content hidden" id="wiki-tab-advanced">
+          <div class="wiki-section">
+            <h3>✨ Golden Plants</h3>
+            <p>• Rare chance on any evolution</p>
+            <p>• Give 2× points when harvested</p>
+            <p>• Special golden sparkle effect</p>
+            <p>• More likely with perfect care</p>
+          </div>
+          
+          <div class="wiki-section">
+            <h3>👴 Elder Status</h3>
+            <p>• Plants at max tier for 5+ minutes become "Elder"</p>
+            <p>• Elders can be retired to Hall of Fame 🏛️</p>
+            <p>• Hall of Fame tracks your achievements</p>
+            <p>• Elder plants have special glow</p>
+          </div>
+          
+          <div class="wiki-section">
+            <h3>💕 Plant Bonds</h3>
+            <p>• Adjacent plants form bonds over time</p>
+            <p>• Bonded plants grow faster together</p>
+            <p>• Strong bonds = better evolutions</p>
+            <p>• Don't separate bonded plants!</p>
+          </div>
+          
+          <div class="wiki-section">
+            <h3>🌙 Night Mechanics</h3>
+            <p>• Growth slows at night (×0.7)</p>
+            <p>• Some evolutions ONLY happen at night</p>
+            <p>• Spore seeds thrive at night</p>
+            <p>• Mysterious visitors appear...</p>
+          </div>
+          
+          <div class="wiki-section">
+            <h3>💫 Diminishing Returns</h3>
+            <p>• Water efficiency decreases with each use</p>
+            <p>• First water: 100% effect</p>
+            <p>• Later waters: reduced boost</p>
+            <p>• Resets when plant evolves</p>
+          </div>
+        </div>
+        
+        <button id="wiki-close" class="btn-secondary">Close</button>
       </div>
     </div>
 
