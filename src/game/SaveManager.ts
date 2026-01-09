@@ -30,14 +30,13 @@ export class SaveManager {
   }
   
   private validateState(state: any): state is GameState {
-    // Basic validation
+    // Basic validation for current state format
     return (
       state &&
-      typeof state.currentZoneId === 'string' &&
-      Array.isArray(state.zones) &&
       typeof state.water === 'number' &&
       state.farmer &&
-      typeof state.farmer.position === 'object'
+      typeof state.farmer.position === 'object' &&
+      (Array.isArray(state.plants) || Array.isArray(state.zones)) // Support both old and new format
     );
   }
 }
